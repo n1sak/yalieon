@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yalieon · the daily descent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%2307111f'/%3E%3Crect x='3' y='6' width='10' height='6' fill='%23f4f7fb'/%3E%3Crect x='5' y='7' width='2' height='2' fill='%231b2430'/%3E%3Crect x='9' y='7' width='2' height='2' fill='%231b2430'/%3E%3Crect x='6' y='10' width='4' height='2' fill='%2300356b'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <div id="boot" class="boot">descending…</div>
+
+  <div class="scene" id="scene">
+    <div class="world" id="world">
+      <div class="sky" aria-hidden="true">
+        <div class="sun"></div>
+        <div class="cloud cloud-a"></div>
+        <div class="cloud cloud-b"></div>
+        <div class="cloud cloud-c"></div>
+        <div class="cloud cloud-d"></div>
+        <div class="bird bird-a"></div>
+        <div class="bird bird-b"></div>
+        <div class="bird bird-c"></div>
+      </div>
+      <div class="below" aria-hidden="true"></div>
+      <svg class="horizon" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="#0c1c33" d="M0 48C90 48 130 26 220 34c90 8 130 30 220 24 100-6 150-30 250-22 110 8 160 30 270 22 110-8 170-28 280-18 100 10 150 24 200 16V90H0Z"/>
+        <path fill="#10243f" d="M0 60c100-10 160 16 270 8 110-8 160-26 270-16 120 10 180 22 300 12 110-10 180-24 280-12 90 10 160 18 320 10V90H0Z"/>
+      </svg>
+      <div id="tower-mount"></div>
+      <div id="flavors"></div>
+      <div id="dog" class="dog coat-classic"></div>
+    </div>
+    <div class="shade" aria-hidden="true"></div>
+    <div class="shade-deep" id="shade-deep" aria-hidden="true"></div>
+    <div class="motes" aria-hidden="true"></div>
+    <div class="ruler" id="ruler" aria-hidden="true"></div>
+  </div>
+
+  <header class="chrome">
+    <button class="icon-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false">
+      <span class="burger"></span>
+    </button>
+    <div class="icon-stack">
+      <button class="icon-btn" id="sound-btn" type="button" aria-label="Turn sound off" aria-pressed="false"></button>
+      <button class="icon-btn" id="settings-btn" type="button" aria-label="Open settings">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6.2 1h3.6l.4 2.1c.4.2.8.4 1.1.6l2-.8 1.8 1.8-.8 2c.2.4.4.7.6 1.1l2.1.4v3.6l-2.1.4c-.2.4-.4.8-.6 1.1l.8 2-1.8 1.8-2-.8c-.3.2-.7.5-1.1.6L9.8 19H6.2l-.4-2.1c-.4-.2-.8-.4-1.1-.6l-2 .8L.9 14.3l.8-2c-.2-.4-.4-.7-.6-1.1L-1 10.8V7.2l2.1-.4c.2-.4.4-.8.6-1.1l-.8-2L2.7 1.9l2 .8c.3-.2.7-.5 1.1-.6L6.2 1Zm1.8 4.2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Z" transform="translate(1 -1) scale(0.9)"/></svg>
+      </button>
+      <button class="icon-btn" id="wardrobe-btn" type="button" aria-label="Open wardrobe">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6 1.5 8 3l2-1.5 3 2V14H3V3.5l3-2Zm2 3.2L6.2 6h3.6L8 4.7ZM4.5 7.2V13h7V7.2H4.5Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="pop" id="pop" hidden>
+    <div class="pop-card">
+      <div class="pop-head">
+        <h2 id="pop-title">Settings</h2>
+        <button type="button" class="pop-x" id="pop-x" aria-label="Close">×</button>
+      </div>
+      <div id="pop-body"></div>
+    </div>
+  </div>
+
+  <nav class="menu" id="menu" hidden>
+    <div class="menu-panel">
+      <p class="eyebrow">YALIEON</p>
+      <div class="menu-title-row">
+        <h2>Menu</h2>
+        <button type="button" class="menu-x" id="menu-x" aria-label="Close menu">×</button>
+      </div>
+      <p class="menu-rule">Dive in</p>
+      <div class="menu-links" id="menu-links"></div>
+    </div>
+  </nav>
+
+  <main id="home" class="home">
+    <div class="title-block">
+      <h1 class="title" id="title" aria-label="Yalieon"></h1>
+      <p class="subtitle">THE DAILY DESCENT</p>
+      <p class="tagline">7 prompts · 25 seconds each · rarer answers sink deeper</p>
+    </div>
+    <div class="home-bottom">
+      <div class="howto-wrap">
+        <button type="button" class="howto-toggle" id="howto-toggle" aria-expanded="false">▸ HOW TO PLAY</button>
+        <ul class="howto" id="howto" hidden>
+          <li>7 prompts a day. same for everyone.</li>
+          <li>25 seconds to name one thing.</li>
+          <li>rare answers score big. obvious ones barely drop.</li>
+          <li>the pick that feels clever? the college thought of it too.</li>
+          <li>every point drops you 1 foot. 700 is the crypt.</li>
+          <li>one descent per day. no second chances.</li>
+        </ul>
+      </div>
+      <p class="legal"><button type="button" class="text-link" id="privacy-btn">Privacy</button></p>
+      <button type="button" class="party" id="party-btn">
+        <span class="beta-tag">BETA · LIMITED TIME</span>
+        <span class="party-dog" id="party-dog" aria-hidden="true"></span>
+        <span class="party-copy">
+          <span class="party-name">BOOLA PARTY</span>
+          <span class="party-meta"><span class="sq"></span> 2,847 playing</span>
+        </span>
+      </button>
+      <button type="button" class="begin" id="begin-btn">▼ BEGIN DESCENT ▼</button>
+      <div class="under">
+        <span class="descent-no">DESCENT #125</span>
+        <span class="under-links">
+          <button type="button" data-panel="archive">ARCHIVE ⟲</button>
+          <button type="button" data-panel="packs">THEMED PACKS</button>
+          <button type="button" data-panel="unlimited">UNLIMITED ∞</button>
+        </span>
+      </div>
+    </div>
+  </main>
+
+  <section id="play" class="play" hidden>
+    <div class="hud">
+      <div class="pill">
+        <span class="pill-label">DEPTH</span>
+        <span class="pill-value depth-value" id="depth-value">0 ft</span>
+      </div>
+      <div class="pips">
+        <div class="pip-row" id="pip-row"></div>
+        <div class="pip-label" id="pip-label">PROMPT 1 OF 7</div>
+      </div>
+      <div class="pill pill-score">
+        <span class="pill-label">SCORE</span>
+        <span class="pill-value score-value" id="score-value">0</span>
+      </div>
+    </div>
+
+    <div class="card" id="prompt-card">
+      <p class="kicker" id="kicker">PROMPT 1 OF 7</p>
+      <h2 class="prompt-text" id="prompt-text"></h2>
+      <p class="card-foot">▼ rarer answers sink deeper ▼</p>
+    </div>
+
+    <div class="card result-card" id="result-card" hidden>
+      <div class="result-mark" id="result-mark"></div>
+      <p class="tier-name" id="tier-name">PREFROSH</p>
+      <p class="result-answer" id="result-answer"></p>
+      <p class="result-points" id="result-points"></p>
+      <p class="result-line" id="result-line"></p>
+      <button type="button" class="descend" id="descend-btn">DESCEND ▼</button>
+    </div>
+
+    <form class="dock" id="dock" autocomplete="off">
+      <div class="timer" id="timer" aria-hidden="true">
+        <svg viewBox="0 0 72 72">
+          <circle class="timer-track" cx="36" cy="36" r="30"></circle>
+          <circle class="timer-ring" id="timer-ring" cx="36" cy="36" r="30"></circle>
+        </svg>
+        <span id="timer-num">25</span>
+      </div>
+      <div class="field" id="field">
+        <p class="reject" id="reject" hidden>not on the sheet.</p>
+        <input id="answer-input" type="text" maxlength="60" placeholder="type one answer..." autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Your answer" />
+        <div class="track"><span id="track-bar"></span></div>
+      </div>
+      <button class="dive" id="dive-btn" type="submit">DIVE</button>
+    </form>
+  </section>
+
+  <section id="end" class="end" hidden></section>
+
+  <div class="scanlines" aria-hidden="true"></div>
+  <script src="game.js"></script>
+</body>
+</html>
