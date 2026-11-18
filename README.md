@@ -10,19 +10,11 @@ Rare answers drop him down the tower.
 
 ## How we built it
 
-![Me, using Grok, thriving](grok.png)
+Grok, of course!
 
 We built this with Grok in Cursor. Then we hooked Cursor up to our Grok API so the questions come straight from Twitter, which is exactly as unhinged as it sounds.
 
 It also reads The Rumpus, the Yale Daily News, The Politic, and whatever else the web is saying about Yale today. So the game knows the campus gossip before you do.
-
-Want live questions? Put a key in `.env`:
-
-```
-XAI_API_KEY=your-key
-```
-
-No key? It plays from the built-in question bank and judges you just the same.
 
 SS of us using Grok:
 <img width="1164" height="928" alt="Screenshot 2026-11-17 at 7 41 07 PM" src="https://github.com/user-attachments/assets/ecfea8d0-de12-4ec9-9943-488b7c8140cf" />
