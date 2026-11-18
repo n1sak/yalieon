@@ -4,9 +4,8 @@
 https://www.youtube.com/watch?v=PnOtj-ZO2Ds
 [![Watch Yalieon in action](https://img.youtube.com/vi/PnOtj-ZO2Ds/maxresdefault.jpg)](https://youtu.be/PnOtj-ZO2Ds)
 
-Seven prompts. Twenty-five seconds each. One pixel bulldog stuck on top of Harkness Tower.
-
-Rare answers drop him down the tower. 
+Seven prompts. Twenty-five seconds each. 
+Handsome Dan's stuck on top of Harkness Tower!! Rare answers bring him down
 
 ## How we built it
 
