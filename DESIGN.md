@@ -125,11 +125,11 @@ The bearing line names the day:
 | Score | Name |
 |---|---|
 | 0–69 | Harvard |
-| 70–150 | Prefrosh |
-| 151–250 | College |
-| 251–350 | Rare |
-| 351–449 | Deep cut |
-| 450+ | Yalieon |
+| 70–150 | Common Crimson |
+| 151–250 | Bulldog Schooler |
+| 251–350 | Raritas |
+| 351–449 | Deep Cut Dog |
+| 450+ | One in a Yalion |
 
 ## Levels
 
@@ -138,12 +138,12 @@ Same points and order as Krillion. Harvard replaces the miss.
 | Level | Points | Color | Line |
 |---|---|---|---|
 | Harvard | 0 | `#a51c30` | The worst. That's a Cambridge answer. |
-| Prefrosh | 10 | `#d5e4f4` | The answer everyone blurts out. |
-| Too Clever | 15 | `#ff9f43` | The pick that felt obscure. It wasn't. |
-| College | 30 | `#4d9bff` | Swimming with the residential colleges. |
-| Rare | 60 | `#ff5252` | Genuinely uncommon. Nice pull. |
-| Deep Cut | 85 | `#b794f6` | Properly down the shaft. |
-| Yalieon | 100 | `#ffd166` | One in a yalieon. |
+| Common Crimson | 10 | `#d5e4f4` | Most common answers. |
+| Too Clever Eli | 15 | `#ff9f43` | The pick that felt obscure. It wasn't. |
+| Bulldog Schooler | 30 | `#4d9bff` | Swimming with the residential colleges. |
+| Raritas | 60 | `#ff5252` | Genuinely uncommon. Nice pull. |
+| Deep Cut Dog | 85 | `#b794f6` | Properly down the shaft. |
+| One in a Yalion | 100 | `#ffd166` | Rarest answers. |
 
 One point is one foot. 700 is the crypt. A perfect day is 700.
 
@@ -159,7 +159,7 @@ Seven broad prompts, the kind a student would say out loud. Not a question about
 6. Name a residential college event or tradition from this week
 7. What are Yale students thinking about right now?
 
-Obvious answers stay shallow. The one satisfying rare answer on a prompt is Yalieon.
+Obvious answers stay shallow. The one satisfying rare answer on a prompt is One in a Yalion.
 
 ## Menu and panels
 

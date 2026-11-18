@@ -69,7 +69,7 @@ function sanitizeSheet(list) {
     if (answers.length < 2) return null;
     next.push({
       text,
-      gem: typeof prompt.gem === "string" ? prompt.gem.slice(0, 180) : "One in a yalieon.",
+      gem: typeof prompt.gem === "string" ? prompt.gem.slice(0, 180) : "One in a Yalion.",
       answers,
     });
   }
@@ -121,7 +121,7 @@ function callGrok(day) {
     "Rules:",
     "- Answers are ordinary campus things: libraries, pizza places, study spots, dining complaints, achievements, college events, and what is on people's minds.",
     "- Do not ask what a specific post said. Do not use a private student's name.",
-    "- prefrosh is the answer everyone blurts out. tooblue is the clever pick that is actually common. college is a solid crowded answer. oldblue is Rare. deepcut is Deep Cut. yalieon is the one satisfying rare answer.",
+    "- prefrosh is Common Crimson, the answer everyone blurts out. tooblue is Too Clever Eli. college is Bulldog Schooler. oldblue is Raritas. deepcut is Deep Cut Dog. yalieon is One in a Yalion, the rarest answer.",
     "- Harvard is a miss and is not an answer on the sheet.",
   ].join("\n");
 

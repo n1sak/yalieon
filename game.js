@@ -7,12 +7,12 @@
 
   const TIERS = {
     harvard: { name: "HARVARD", points: 0, color: "#A51C30", line: "The worst. That's a Cambridge answer." },
-    prefrosh: { name: "PREFROSH", points: 10, color: "#d5e4f4", line: "The answer everyone blurts out." },
-    tooblue: { name: "TOO CLEVER", points: 15, color: "#ff9f43", line: "The pick that felt obscure. It wasn't." },
-    college: { name: "COLLEGE", points: 30, color: "#4d9bff", line: "Swimming with the residential colleges." },
-    oldblue: { name: "RARE", points: 60, color: "#ff5252", line: "Genuinely uncommon. Nice pull." },
-    deepcut: { name: "DEEP CUT", points: 85, color: "#b794f6", line: "Properly down the shaft." },
-    yalieon: { name: "YALIEON", points: 100, color: "#ffd166", line: "One in a yalieon." },
+    prefrosh: { name: "COMMON CRIMSON", points: 10, color: "#d5e4f4", line: "Most common answers." },
+    tooblue: { name: "TOO CLEVER ELI", points: 15, color: "#ff9f43", line: "The pick that felt obscure. It wasn't." },
+    college: { name: "BULLDOG SCHOOLER", points: 30, color: "#4d9bff", line: "Swimming with the residential colleges." },
+    oldblue: { name: "RARITAS", points: 60, color: "#ff5252", line: "Genuinely uncommon. Nice pull." },
+    deepcut: { name: "DEEP CUT DOG", points: 85, color: "#b794f6", line: "Properly down the shaft." },
+    yalieon: { name: "ONE IN A YALION", points: 100, color: "#ffd166", line: "Rarest answers." },
   };
 
   const PROMPTS = [
@@ -55,6 +55,7 @@
         { tier: "deepcut", aliases: ["ernies", "ernie"] },
         { tier: "deepcut", aliases: ["tony and lucilles", "tony lucilles", "tony and lucille"] },
         { tier: "deepcut", aliases: ["brick oven"] },
+        { tier: "deepcut", aliases: ["bobbis", "bobbi", "bobbis pizza", "bobbys", "bobby"] },
         { tier: "yalieon", aliases: ["yorkside", "yorkside pizza"] },
       ],
     },
@@ -73,6 +74,7 @@
         { tier: "oldblue", aliases: ["lc", "linsly chittenden", "linslychittenden", "linsly"] },
         { tier: "oldblue", aliases: ["wlh", "william l harkness hall", "harkness hall"] },
         { tier: "oldblue", aliases: ["hgs", "hall of graduate studies"] },
+        { tier: "oldblue", aliases: ["kline tower", "kline", "kline biology tower"] },
         { tier: "deepcut", aliases: ["rosenfeld hall", "rosenfeld"] },
         { tier: "deepcut", aliases: ["hive", "yale hive"] },
         { tier: "deepcut", aliases: ["schwarzman", "schwarzman center"] },
@@ -91,6 +93,7 @@
         { tier: "tooblue", aliases: ["quality of food", "the food", "bad food", "food quality", "food"] },
         { tier: "tooblue", aliases: ["limited late night options", "late night", "no late food", "late night options"] },
         { tier: "tooblue", aliases: ["crowded dining halls", "lines", "too crowded", "crowded"] },
+        { tier: "tooblue", aliases: ["soft serve", "softserve", "soft serve ice cream"] },
         { tier: "college", aliases: ["repetitive menus", "same food every week", "menu rotation", "repetitive"] },
         { tier: "college", aliases: ["price", "too expensive", "cost of meal plan"] },
         { tier: "college", aliases: ["vegetarian options", "vegan options", "not enough vegan", "veggie options", "vegetarian", "vegan"] },
@@ -115,6 +118,7 @@
         { tier: "college", aliases: ["senior award", "a specific seniors award"] },
         { tier: "college", aliases: ["research publication", "published paper", "publication", "research"] },
         { tier: "college", aliases: ["fellowship", "truman", "marshall", "fulbright"] },
+        { tier: "college", aliases: ["world of dance", "worldofdance"] },
         { tier: "oldblue", aliases: ["hackathon win", "hackathon"] },
         { tier: "oldblue", aliases: ["startup funding", "raised money", "startup", "yc", "y combinator"] },
         { tier: "oldblue", aliases: ["athletic championship", "ivy title", "championship"] },
@@ -127,7 +131,7 @@
     },
     {
       text: "Name a residential college event or tradition from this week",
-      gem: "Yoga in the college. This week's quiet tradition.",
+      gem: "Sophomore sushi night. Almost nobody types the whole thing.",
       answers: [
         { tier: "prefrosh", aliases: ["themed dinner", "south asian dinner", "cultural dinner", "morse stiles dinner"] },
         { tier: "tooblue", aliases: ["college tea", "masters tea", "head of college tea", "tea"] },
@@ -143,7 +147,8 @@
         { tier: "oldblue", aliases: ["nothing special", "quiet week", "nothing"] },
         { tier: "deepcut", aliases: ["open mic", "open mic night"] },
         { tier: "deepcut", aliases: ["library study party", "study party"] },
-        { tier: "yalieon", aliases: ["fitness class", "yoga", "yoga in college", "fitness"] },
+        { tier: "deepcut", aliases: ["fitness class", "yoga", "yoga in college", "fitness"] },
+        { tier: "yalieon", aliases: ["sophomore sushi night", "sushi night", "sophomore sushi"] },
       ],
     },
     {
@@ -543,8 +548,8 @@
       return openPop("FAQ", (body) => {
         const bits = [
           ["What is a descent?", "Seven prompts. One answer each. The rarer it is, the farther the bulldog drops. 700 feet is the crypt."],
-          ["What is Too Clever?", "The answer that feels like a deep cut and is not. The whole college already said it."],
-          ["What is Rare?", "Uncommon, and still something a student would actually say. Deep Cut and Yalieon go deeper."],
+          ["What is Too Clever Eli?", "The answer that feels like a deep cut and is not. The whole college already said it."],
+          ["What is Raritas?", "Uncommon, and still something a student would actually say. Deep Cut Dog and One in a Yalion go deeper."],
           ["What is Harvard?", "The worst. Empty, late, or not on the sheet. The bulldog stays put."],
           ["Why this answer and not mine?", "The sheet is a short campus set for the demo, not the whole of Yale."],
         ];
@@ -628,6 +633,49 @@
     state.muted = !state.muted;
     localStorage.setItem("yalieon-mute", state.muted ? "1" : "0");
     speakerIcon(!state.muted);
+    if (state.muted) stopSong();
+    else playBulldogSong();
+  }
+
+  let songNodes = [];
+
+  function stopSong() {
+    songNodes.forEach((node) => {
+      try { node.stop(); } catch (err) { /* already stopped */ }
+    });
+    songNodes = [];
+  }
+
+  function playBulldogSong() {
+    const ctx = ensureAudio();
+    if (!ctx) return;
+    stopSong();
+    const beat = 0.2;
+    const notes = [
+      392, 392, 392, 392, 329.63, 349.23, 392, 392, 440, 392, 329.63, 329.63,
+      392, 392, 392, 392, 329.63, 349.23, 392, 392, 523.25, 523.25, 523.25, 523.25,
+      523.25, 523.25, 523.25, 587.33, 659.25, 587.33, 523.25, 523.25, 493.88, 440, 392, 392,
+      440, 392, 349.23, 329.63, 293.66, 293.66,
+      392, 392, 392, 392, 329.63, 349.23, 392, 392, 523.25, 523.25, 523.25, 523.25,
+    ];
+    const held = new Set([7, 11, 18, 23, 30, 35, 39, 41, 46, 51]);
+    let time = ctx.currentTime + 0.05;
+    notes.forEach((freq, i) => {
+      const dur = (held.has(i) ? 2 : 1) * beat;
+      const osc = ctx.createOscillator();
+      const amp = ctx.createGain();
+      osc.type = "square";
+      osc.frequency.value = freq;
+      amp.gain.setValueAtTime(0.0001, time);
+      amp.gain.exponentialRampToValueAtTime(0.04, time + 0.02);
+      amp.gain.exponentialRampToValueAtTime(0.0001, time + dur - 0.03);
+      osc.connect(amp);
+      amp.connect(ctx.destination);
+      osc.start(time);
+      osc.stop(time + dur);
+      songNodes.push(osc);
+      time += dur;
+    });
   }
 
   function ensureAudio() {
@@ -719,7 +767,7 @@
       if (answers.length < 2) return null;
       next.push({
         text,
-        gem: typeof prompt.gem === "string" ? prompt.gem.slice(0, 180) : "One in a yalieon.",
+        gem: typeof prompt.gem === "string" ? prompt.gem.slice(0, 180) : "One in a Yalion.",
         answers,
       });
     }
@@ -755,7 +803,7 @@
   async function startDescent() {
     await dailyReady;
     ensureAudio();
-    blip(340, 0.08, "square", 0.03);
+    playBulldogSong();
     stopLoop();
     state.index = 0;
     state.score = 0;
@@ -856,7 +904,8 @@
     const text = String(raw || "").trim();
     state.lastTyped = text;
     if (!text) {
-      reject();
+      if (state.index === 6) accept("harvard", "nothing");
+      else reject();
       return;
     }
     const hit = matchAnswer(sheet[state.index], text);
@@ -968,11 +1017,11 @@
   }
 
   function bearing(score) {
-    if (score >= 450) return { range: "450+", line: "Yalieon. The crypt. Almost nobody walks out this far." };
-    if (score >= 351) return { range: "351–449", line: "Deep cut. The shaft knows your name." };
-    if (score >= 251) return { range: "251–350", line: "Rare. Well below the bells." };
-    if (score >= 151) return { range: "151–250", line: "College. A respectable stair, and a crowded one." };
-    if (score >= 70) return { range: "70–150", line: "Prefrosh. Plenty of tower left." };
+    if (score >= 450) return { range: "450+", line: "One in a Yalion. The crypt. Almost nobody walks out this far." };
+    if (score >= 351) return { range: "351–449", line: "Deep Cut Dog. The shaft knows your name." };
+    if (score >= 251) return { range: "251–350", line: "Raritas. Well below the bells." };
+    if (score >= 151) return { range: "151–250", line: "Bulldog Schooler. A respectable stair, and a crowded one." };
+    if (score >= 70) return { range: "70–150", line: "Common Crimson. Plenty of tower left." };
     return { range: "0–69", line: "Harvard. The worst of the tower." };
   }
 
@@ -1130,7 +1179,6 @@
     });
     $("sound-btn").addEventListener("click", () => {
       toggleMute();
-      if (!state.muted) blip(440, 0.05, "square", 0.03);
     });
     $("settings-btn").addEventListener("click", () => {
       if ($("pop").hidden || $("pop-title").textContent !== "Settings") openSettings();
