@@ -20,3 +20,4 @@ SS of us using Grok:
 <img width="800" alt="Screenshot 2026-11-17 at 7 41 07 PM" src="https://github.com/user-attachments/assets/ecfea8d0-de12-4ec9-9943-488b7c8140cf" />
 
 
+Made with 🩷 by: Nisa and Ibi
