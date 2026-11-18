@@ -1,25 +1,33 @@
-# Yalieon
+# Yalieon 🐶
 
-A Yale daily in the shape of a descent. Seven prompts, twenty-five seconds each. Rarer answers drop a pixel bulldog farther down Harkness Tower. A miss is a Harvard answer, and it does not drop.
+<img width="1105" height="533" alt="Screenshot 2026-11-17 at 8 03 20 PM" src="https://github.com/user-attachments/assets/3995e1e8-4a77-4473-ae16-5f967f69f4d3" />
 
-From this folder:
 
-```
-node server.js
-```
+**A daily Yale game where basic answers get you nowhere.**
 
-Then visit http://localhost:5173
+[![Watch Yalieon in action](https://img.youtube.com/vi/PnOtj-ZO2Ds/maxresdefault.jpg)](https://youtu.be/PnOtj-ZO2Ds)
 
-The bulldog on the tower is `bulldog.png`. It drops farther as answers get rarer.
+Seven prompts. Twenty-five seconds each. One pixel bulldog stuck on top of Harkness Tower.
 
-The questions stay broad, the way students actually talk: a library, a pizza place, a study spot, dining, what people are talking about. A miss is Harvard, the worst. Under that, rarer answers climb through Rare, Deep Cut, and Yalieon.
+Rare answers drop him down the tower. 
 
-The live X search is optional. Put a key in `.env` if you want a fresh sheet in that same basic style:
+## How we built it
+
+![Me, using Grok, thriving](grok.png)
+
+We built this with Grok in Cursor. Then we hooked Cursor up to our Grok API so the questions come straight from Twitter, which is exactly as unhinged as it sounds.
+
+It also reads The Rumpus, the Yale Daily News, The Politic, and whatever else the web is saying about Yale today. So the game knows the campus gossip before you do.
+
+Want live questions? Put a key in `.env`:
 
 ```
 XAI_API_KEY=your-key
 ```
 
-The day's sheet is cached in `data/` so the stream is read once. With no key, or if the stream fails, the game keeps the baked Yale question bank.
+No key? It plays from the built-in question bank and judges you just the same.
 
-Try `Sterling` on the first prompt when the bank is playing. Anything that is not on the sheet can be retried until the clock hits zero.
+SS of us using Grok:
+<img width="1164" height="928" alt="Screenshot 2026-11-17 at 7 41 07 PM" src="https://github.com/user-attachments/assets/ecfea8d0-de12-4ec9-9943-488b7c8140cf" />
+
+
