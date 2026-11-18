@@ -4,8 +4,8 @@
 https://www.youtube.com/watch?v=PnOtj-ZO2Ds
 [![Watch Yalieon in action](https://img.youtube.com/vi/PnOtj-ZO2Ds/maxresdefault.jpg)](https://youtu.be/PnOtj-ZO2Ds)
 
-Seven prompts. Twenty-five seconds each. 
-Handsome Dan's stuck on top of Harkness Tower!! Rare answers bring him down
+This is a fun game for Yalies to play together and decompress during exam seaso. 
+Handsome Dan's stuck on top of Harkness Tower!! You have seven prompts...rare answers bring him down.
 
 ## How we built it
 
