@@ -179,14 +179,25 @@ button:focus-visible, input:focus-visible {
 .dog {
   position: absolute;
   z-index: 5;
-  width: 84px;
-  height: 76px;
+  width: 92px;
+  height: 112px;
   pointer-events: none;
   filter:
     drop-shadow(1px 0 0 #1b2430)
     drop-shadow(-1px 0 0 #1b2430)
     drop-shadow(0 1px 0 #1b2430)
     drop-shadow(0 2px 0 rgba(5, 10, 18, 0.55));
+}
+
+.bulldog {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  image-rendering: pixelated;
+  pointer-events: none;
+  user-select: none;
 }
 
 .dog.idle { animation: bob 1.7s ease-in-out infinite; }
@@ -490,7 +501,7 @@ button:focus-visible, input:focus-visible {
   padding: 1px 8px 0;
 }
 
-.party-dog { width: 36px; height: 32px; flex: none; }
+.party-dog { width: 40px; height: 48px; flex: none; }
 
 .party-copy { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
 
@@ -667,7 +678,8 @@ button:focus-visible, input:focus-visible {
 
 .result-card { padding-bottom: 26px; }
 
-.result-mark { min-height: 72px; display: grid; place-items: center; margin-bottom: 4px; }
+.result-mark { min-height: 96px; display: grid; place-items: center; margin-bottom: 4px; }
+.result-mark .bulldog { width: 78px; height: 96px; }
 
 .dust {
   width: 8px;
@@ -968,8 +980,8 @@ button:focus-visible, input:focus-visible {
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 22px;
-  height: 20px;
+  width: 26px;
+  height: 32px;
 }
 
 .log-num {

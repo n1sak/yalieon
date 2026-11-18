@@ -6,101 +6,173 @@
   const RING = 2 * Math.PI * 30;
 
   const TIERS = {
-    harvard: { name: "HARVARD", points: 0, color: "#A51C30", line: "That's a Cambridge answer." },
+    harvard: { name: "HARVARD", points: 0, color: "#A51C30", line: "The worst. That's a Cambridge answer." },
     prefrosh: { name: "PREFROSH", points: 10, color: "#d5e4f4", line: "The answer everyone blurts out." },
-    tooblue: { name: "TOO BLUE", points: 15, color: "#ff9f43", line: "The pick that felt obscure. It wasn't." },
+    tooblue: { name: "TOO CLEVER", points: 15, color: "#ff9f43", line: "The pick that felt obscure. It wasn't." },
     college: { name: "COLLEGE", points: 30, color: "#4d9bff", line: "Swimming with the residential colleges." },
-    oldblue: { name: "OLD BLUE", points: 60, color: "#ff5252", line: "Genuinely uncommon. Nice pull." },
+    oldblue: { name: "RARE", points: 60, color: "#ff5252", line: "Genuinely uncommon. Nice pull." },
     deepcut: { name: "DEEP CUT", points: 85, color: "#b794f6", line: "Properly down the shaft." },
     yalieon: { name: "YALIEON", points: 100, color: "#ffd166", line: "One in a yalieon." },
   };
 
   const PROMPTS = [
     {
-      text: "Name a Yale residential college",
-      gem: "Named in 2016. The newest college on the stair.",
+      text: "Name a Yale library",
+      gem: "It sits in Farmington. Almost nobody counts it as a Yale library.",
       answers: [
-        { tier: "prefrosh", aliases: ["saybrook", "branford", "pierson", "davenport"] },
-        { tier: "tooblue", aliases: ["calhoun", "calhoun college"] },
-        { tier: "college", aliases: ["jonathan edwards", "trumbull", "berkeley", "silliman"] },
-        { tier: "oldblue", aliases: ["timothy dwight", "td", "ezra stiles", "stiles", "morse"] },
-        { tier: "deepcut", aliases: ["benjamin franklin", "franklin", "grace hopper", "hopper"] },
-        { tier: "yalieon", aliases: ["pauli murray", "murray college", "pauli murray college"] },
-      ],
-    },
-    {
-      text: "Name a building on Old Campus",
-      gem: "Everyone calls it LC. The full name is the drop.",
-      answers: [
-        { tier: "prefrosh", aliases: ["vanderbilt", "vanderbilt hall", "connecticut hall", "phelps", "phelps hall", "phelps gate"] },
-        { tier: "tooblue", aliases: ["battell", "battell chapel", "dwight hall"] },
-        { tier: "college", aliases: ["lawrance", "lawrance hall", "farnam", "farnam hall", "durfee", "durfee hall"] },
-        { tier: "oldblue", aliases: ["welch", "welch hall", "wright hall", "bingham", "bingham hall"] },
-        { tier: "deepcut", aliases: ["mcclellan", "mcclellan hall", "white hall"] },
-        { tier: "yalieon", aliases: ["linsly chittenden", "linsly", "lc", "chittenden"] },
-      ],
-    },
-    {
-      text: "Name a Yale a cappella group",
-      gem: "A Dylan title, and a group that actually sings it.",
-      answers: [
-        { tier: "prefrosh", aliases: ["whiffenpoofs", "whiffenpoof", "whifs", "spizzwinks", "spizzwink"] },
-        { tier: "tooblue", aliases: ["glee club", "yale glee club"] },
-        { tier: "college", aliases: ["redhot and blue", "red hot and blue", "something extra", "dukes men", "the dukes men"] },
-        { tier: "oldblue", aliases: ["mixed company", "out of the blue", "shades", "shades of yale", "proof of the pudding"] },
-        { tier: "deepcut", aliases: ["doox", "doox of yale", "magevet", "bakers dozen", "alley cats", "the new blue", "new blue"] },
-        { tier: "yalieon", aliases: ["tangled up in blue"] },
+        { tier: "prefrosh", aliases: ["sterling", "sml", "sterling library", "sterling memorial library"] },
+        { tier: "prefrosh", aliases: ["bass", "bass library"] },
+        { tier: "prefrosh", aliases: ["beinecke", "beinecke library", "beinecke rare book and manuscript library", "beinecke rare book library"] },
+        { tier: "tooblue", aliases: ["marx", "marx library", "ssl", "marx science and social science library"] },
+        { tier: "college", aliases: ["law library", "law", "lillian goldman", "yale law library", "law school library"] },
+        { tier: "oldblue", aliases: ["haas", "arts library", "haas family arts library"] },
+        { tier: "deepcut", aliases: ["gilmore", "music library", "irving s gilmore music library"] },
+        { tier: "deepcut", aliases: ["medical library", "med library", "cushing whitney", "cushingwhitney", "harvey cushing"] },
+        { tier: "deepcut", aliases: ["divinity library", "divinity", "yale divinity school library"] },
+        { tier: "deepcut", aliases: ["center for british art", "ycba", "british art", "yale center for british art"] },
+        { tier: "deepcut", aliases: ["kline", "kline science library"] },
+        { tier: "deepcut", aliases: ["sterling stacks", "stacks"] },
+        { tier: "deepcut", aliases: ["cross campus library", "ccl", "old ccl"] },
+        { tier: "deepcut", aliases: ["sml reading room", "nave", "sterling nave"] },
+        { tier: "yalieon", aliases: ["lewis walpole library", "walpole", "lewis walpole"] },
       ],
     },
     {
       text: "Name a New Haven pizza place",
-      gem: "The Wooster Square pie that isn't Pepe or Sally.",
+      gem: "The campus pizza counter that isn't on Wooster.",
       answers: [
-        { tier: "prefrosh", aliases: ["pepe", "pepes", "frank pepe", "peppe", "sallys", "sally", "sally apizza"] },
-        { tier: "tooblue", aliases: ["bar", "bar pizza"] },
-        { tier: "college", aliases: ["modern", "modern apizza"] },
-        { tier: "oldblue", aliases: ["next door", "zeneli"] },
-        { tier: "deepcut", aliases: ["da legna", "abate", "abate apizza", "est est est", "nolo"] },
-        { tier: "yalieon", aliases: ["roseland", "roseland apizza"] },
+        { tier: "prefrosh", aliases: ["frank pepe", "pepe", "pepes", "frank pepe pizzeria napoletana", "pepes pizzeria"] },
+        { tier: "prefrosh", aliases: ["sallys", "sally", "sallys apizza"] },
+        { tier: "prefrosh", aliases: ["modern", "modern apizza"] },
+        { tier: "tooblue", aliases: ["bar", "bar pizza", "bar new haven"] },
+        { tier: "college", aliases: ["da legna", "da legna al foco"] },
+        { tier: "oldblue", aliases: ["zeneli", "zeneli pizzeria"] },
+        { tier: "deepcut", aliases: ["new haven style pizza", "new haven style", "apizza"] },
+        { tier: "deepcut", aliases: ["pizza on chapel"] },
+        { tier: "deepcut", aliases: ["est est est"] },
+        { tier: "deepcut", aliases: ["nolo"] },
+        { tier: "deepcut", aliases: ["ippolita"] },
+        { tier: "deepcut", aliases: ["ernies", "ernie"] },
+        { tier: "deepcut", aliases: ["tony and lucilles", "tony lucilles", "tony and lucille"] },
+        { tier: "deepcut", aliases: ["brick oven"] },
+        { tier: "yalieon", aliases: ["yorkside", "yorkside pizza"] },
       ],
     },
     {
-      text: "Name a Yale secret society",
-      gem: "A society named like a proof. Almost nobody types it.",
+      text: "Name a place to study that isn't a library",
+      gem: "The college snack bar. Not a library, still a study spot.",
       answers: [
-        { tier: "prefrosh", aliases: ["skull and bones", "bones", "scroll and key", "wolfs head", "wolf head"] },
-        { tier: "tooblue", aliases: ["book and snake"] },
-        { tier: "college", aliases: ["berzelius", "elihu", "manuscript"] },
-        { tier: "oldblue", aliases: ["st elmos", "st elmo", "saint elmo", "myth and sword"] },
-        { tier: "deepcut", aliases: ["sage and chalice", "spade and grave", "axe and gate"] },
-        { tier: "yalieon", aliases: ["desmos"] },
+        { tier: "prefrosh", aliases: ["common room", "college common room", "my common room"] },
+        { tier: "prefrosh", aliases: ["coffee shop", "cafe", "blue state", "koffee", "willoughbys", "willoughby"] },
+        { tier: "tooblue", aliases: ["dining hall", "my dining hall", "residential college dining hall"] },
+        { tier: "tooblue", aliases: ["my room", "dorm", "suite", "my suite"] },
+        { tier: "tooblue", aliases: ["cross campus", "cross campus lawn", "on cross campus"] },
+        { tier: "college", aliases: ["sterling nave", "nave", "sterling memorial library nave"] },
+        { tier: "college", aliases: ["bass underground", "bass basement"] },
+        { tier: "oldblue", aliases: ["ts", "toads", "toads place"] },
+        { tier: "oldblue", aliases: ["lc", "linsly chittenden", "linslychittenden", "linsly"] },
+        { tier: "oldblue", aliases: ["wlh", "william l harkness hall", "harkness hall"] },
+        { tier: "oldblue", aliases: ["hgs", "hall of graduate studies"] },
+        { tier: "deepcut", aliases: ["rosenfeld hall", "rosenfeld"] },
+        { tier: "deepcut", aliases: ["hive", "yale hive"] },
+        { tier: "deepcut", aliases: ["schwarzman", "schwarzman center"] },
+        { tier: "deepcut", aliases: ["old campus", "old campus lawn", "outside on old campus"] },
+        { tier: "deepcut", aliases: ["friends suite", "friends room", "a friends suite"] },
+        { tier: "deepcut", aliases: ["empty classroom", "classroom"] },
+        { tier: "yalieon", aliases: ["buttery"] },
       ],
     },
     {
-      text: "Name something in a Yale student's bag",
-      gem: "Crumpled, greasy, and still in there on Monday.",
+      text: "Name something students complain about with Yale dining",
+      gem: "The dining-hall pie. A complaint with its own slice.",
       answers: [
-        { tier: "prefrosh", aliases: ["laptop", "macbook", "airpods", "yale id", "student id", "water bottle"] },
-        { tier: "tooblue", aliases: ["blue book", "bluebook"] },
-        { tier: "college", aliases: ["charger", "notebook", "keys", "pen", "headphones"] },
-        { tier: "oldblue", aliases: ["scarf", "umbrella", "kindle", "calculator", "sunglasses"] },
-        { tier: "deepcut", aliases: ["laundry card", "room key", "course packet"] },
-        { tier: "yalieon", aliases: ["durfee receipt", "durfees receipt"] },
+        { tier: "prefrosh", aliases: ["meal swipes expire", "points expire", "dining points expire", "swipes disappearing", "swipes expire", "meal swipes"] },
+        { tier: "prefrosh", aliases: ["forced meal plan", "required meal plan", "have to buy meal plan", "meal plan"] },
+        { tier: "tooblue", aliases: ["quality of food", "the food", "bad food", "food quality", "food"] },
+        { tier: "tooblue", aliases: ["limited late night options", "late night", "no late food", "late night options"] },
+        { tier: "tooblue", aliases: ["crowded dining halls", "lines", "too crowded", "crowded"] },
+        { tier: "college", aliases: ["repetitive menus", "same food every week", "menu rotation", "repetitive"] },
+        { tier: "college", aliases: ["price", "too expensive", "cost of meal plan"] },
+        { tier: "college", aliases: ["vegetarian options", "vegan options", "not enough vegan", "veggie options", "vegetarian", "vegan"] },
+        { tier: "oldblue", aliases: ["halal", "kosher", "halal kosher", "halal kosher availability"] },
+        { tier: "oldblue", aliases: ["dining hall hours", "closes too early", "hours"] },
+        { tier: "deepcut", aliases: ["allergy accommodations", "allergies", "allergy"] },
+        { tier: "deepcut", aliases: ["lawsuit", "meal plan lawsuit", "alum lawsuit"] },
+        { tier: "deepcut", aliases: ["transferability of points", "cant transfer points", "transfer points"] },
+        { tier: "deepcut", aliases: ["south campus vs old campus", "dining inequality", "south campus"] },
+        { tier: "deepcut", aliases: ["no real dinner on weekends", "weekend dining", "weekend dinner"] },
+        { tier: "yalieon", aliases: ["the pizza", "dining hall pizza", "pizza"] },
       ],
     },
     {
-      text: "Name a food from a buttery",
-      gem: "The sweet one they make when the grill is quiet.",
+      text: "Name a recent Yale student achievement people are talking about",
+      gem: "The award that never makes the group chat.",
       answers: [
-        { tier: "prefrosh", aliases: ["pizza", "chicken tenders", "tenders", "fries", "mozzarella sticks", "mozz sticks"] },
-        { tier: "tooblue", aliases: ["quesadilla"] },
-        { tier: "college", aliases: ["bagel", "cookie", "cookies", "wings", "chicken sandwich"] },
-        { tier: "oldblue", aliases: ["grilled cheese", "empanada", "hummus"] },
-        { tier: "deepcut", aliases: ["buffalo chicken wrap", "chicken bacon ranch", "cookie dough"] },
-        { tier: "yalieon", aliases: ["nutella crepe", "nutella crepes"] },
+        { tier: "prefrosh", aliases: ["rhodes scholarship", "rhodes", "rhodes scholars", "rhodes scholar", "three rhodes"] },
+        { tier: "tooblue", aliases: ["yaledancers", "yale dancers", "yaledancers beat harvard", "dance competition"] },
+        { tier: "tooblue", aliases: ["basketball win", "mens basketball", "basketball", "beat emmanuel"] },
+        { tier: "college", aliases: ["swim and dive", "swimming", "swim", "beat dartmouth"] },
+        { tier: "college", aliases: ["senior award", "a specific seniors award"] },
+        { tier: "college", aliases: ["research publication", "published paper", "publication", "research"] },
+        { tier: "college", aliases: ["fellowship", "truman", "marshall", "fulbright"] },
+        { tier: "oldblue", aliases: ["hackathon win", "hackathon"] },
+        { tier: "oldblue", aliases: ["startup funding", "raised money", "startup", "yc", "y combinator"] },
+        { tier: "oldblue", aliases: ["athletic championship", "ivy title", "championship"] },
+        { tier: "oldblue", aliases: ["nothing", "too many to name", "everyone is achieving", "too many"] },
+        { tier: "deepcut", aliases: ["debate tournament", "debate win", "debate"] },
+        { tier: "deepcut", aliases: ["art exhibition", "gallery show", "art show"] },
+        { tier: "deepcut", aliases: ["music performance", "concert", "recital"] },
+        { tier: "yalieon", aliases: ["community service award", "community service"] },
+      ],
+    },
+    {
+      text: "Name a residential college event or tradition from this week",
+      gem: "Yoga in the college. This week's quiet tradition.",
+      answers: [
+        { tier: "prefrosh", aliases: ["themed dinner", "south asian dinner", "cultural dinner", "morse stiles dinner"] },
+        { tier: "tooblue", aliases: ["college tea", "masters tea", "head of college tea", "tea"] },
+        { tier: "tooblue", aliases: ["study break", "college study break"] },
+        { tier: "tooblue", aliases: ["intramural game", "im sports", "intramurals", "intramural", "ims", "im"] },
+        { tier: "tooblue", aliases: ["movie night", "college movie", "movie"] },
+        { tier: "college", aliases: ["game night", "board games"] },
+        { tier: "college", aliases: ["buttery event", "buttery special", "buttery"] },
+        { tier: "college", aliases: ["suite party", "suite", "party in suite"] },
+        { tier: "oldblue", aliases: ["college council meeting", "college council", "ycc"] },
+        { tier: "oldblue", aliases: ["diwali", "diwali celebration"] },
+        { tier: "oldblue", aliases: ["africa week", "africa week event", "sankofa"] },
+        { tier: "oldblue", aliases: ["nothing special", "quiet week", "nothing"] },
+        { tier: "deepcut", aliases: ["open mic", "open mic night"] },
+        { tier: "deepcut", aliases: ["library study party", "study party"] },
+        { tier: "yalieon", aliases: ["fitness class", "yoga", "yoga in college", "fitness"] },
+      ],
+    },
+    {
+      text: "What are Yale students thinking about right now?",
+      gem: "The hackathon on campus while everyone else says finals.",
+      answers: [
+        { tier: "prefrosh", aliases: ["finals", "exams", "studying for finals"] },
+        { tier: "tooblue", aliases: ["thanksgiving break", "thanksgiving", "break", "going home"] },
+        { tier: "tooblue", aliases: ["grade inflation", "grades", "grading policy", "pass fail", "passfail"] },
+        { tier: "tooblue", aliases: ["internships", "internship", "summer internships", "recruiting"] },
+        { tier: "college", aliases: ["applications", "grad school", "job applications", "fellowships", "apps"] },
+        { tier: "college", aliases: ["sleep", "being tired", "napping", "tired"] },
+        { tier: "college", aliases: ["meal plan", "dining", "food"] },
+        { tier: "college", aliases: ["campus politics", "mcinnis", "administration", "protests"] },
+        { tier: "college", aliases: ["nothing", "existential dread", "vibes", "void"] },
+        { tier: "oldblue", aliases: ["relationships", "dating", "situationship"] },
+        { tier: "oldblue", aliases: ["clubs", "extracurriculars", "a cappella", "acappella"] },
+        { tier: "deepcut", aliases: ["money", "financial aid", "budget"] },
+        { tier: "deepcut", aliases: ["weather", "cold", "new haven weather"] },
+        { tier: "deepcut", aliases: ["digital ids", "digital id", "ycc proposals"] },
+        { tier: "deepcut", aliases: ["rhodes scholars", "rhodes"] },
+        { tier: "deepcut", aliases: ["pizzas", "pizza", "pepes", "getting food"] },
+        { tier: "deepcut", aliases: ["residential college", "college pride", "my college", "college"] },
+        { tier: "yalieon", aliases: ["grokathon", "hackathon"] },
       ],
     },
   ];
+
+  let sheet = PROMPTS;
 
   const FLAVORS = [
     { at: 0.04, side: "left", text: "── the carillon starts" },
@@ -201,37 +273,8 @@
     return best;
   }
 
-  function dogSVG(size) {
-    const c = size || 4;
-    const pixels = [
-      "....bb....bb....",
-      "...bWWb..bWWb...",
-      "..bWKWWbbWKWWb..",
-      "..bWWWWWWWWWWWb.",
-      "...bWWWWWWWWWb..",
-      "....bKKKKKKb....",
-      "....bKKPPKKb....",
-      ".....bWWWWb.....",
-      "....bbWWWWbb....",
-      "...bBWWWWWWBb...",
-      "..bWWWWWWWWWWb..",
-      "..bWWWWWWWWWWb..",
-      "...bWWWWWWWWb...",
-      "....KK....KK....",
-      "....KK....KK....",
-    ];
-    const fill = { W: "#f4f7fb", B: "#00356b", b: "#1b2430", K: "#1a1e24", P: "#e7a0b0" };
-    let rects = "";
-    pixels.forEach((row, y) => {
-      [...row].forEach((ch, x) => {
-        if (!fill[ch]) return;
-        rects += `<rect x="${x * c}" y="${y * c}" width="${c}" height="${c}" fill="${fill[ch]}"/>`;
-      });
-    });
-    rects += `<g class="scarf"><rect x="${5 * c}" y="${8 * c}" width="${6 * c}" height="${c}" fill="#00356b"/><rect x="${7 * c}" y="${9 * c}" width="${2 * c}" height="${c}" fill="#00356b"/></g>`;
-    const w = 16 * c;
-    const h = 15 * c;
-    return `<svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
+  function dogSVG() {
+    return `<img class="bulldog" src="bulldog.png" alt="" draggable="false">`;
   }
 
   function harvardSVG(c) {
@@ -407,7 +450,7 @@
     const towerRect = svg.getBoundingClientRect();
     const towerLeft = towerRect.left - worldRect.left;
     dog.style.top = dogY + "px";
-    dog.style.left = towerLeft - 22 + "px";
+    dog.style.left = towerLeft - 36 + "px";
     let cam = 0;
     if (state.screen !== "home" && state.screen !== "boot" && state.displayDepth > 0) {
       cam = Math.max(0, dogY - window.innerHeight * 0.42);
@@ -500,8 +543,9 @@
       return openPop("FAQ", (body) => {
         const bits = [
           ["What is a descent?", "Seven prompts. One answer each. The rarer it is, the farther the bulldog drops. 700 feet is the crypt."],
-          ["What is Too Blue?", "The answer that feels like a deep cut and is not. The whole college already said it."],
-          ["What is Harvard?", "A miss. Empty, late, or not on the sheet when the clock dies. The bulldog stays put."],
+          ["What is Too Clever?", "The answer that feels like a deep cut and is not. The whole college already said it."],
+          ["What is Rare?", "Uncommon, and still something a student would actually say. Deep Cut and Yalieon go deeper."],
+          ["What is Harvard?", "The worst. Empty, late, or not on the sheet. The bulldog stays put."],
           ["Why this answer and not mine?", "The sheet is a short campus set for the demo, not the whole of Yale."],
         ];
         bits.forEach(([q, a]) => {
@@ -639,6 +683,64 @@
     renderPips();
   }
 
+  const TIER_IDS = new Set(["prefrosh", "tooblue", "college", "oldblue", "deepcut", "yalieon"]);
+
+  function descentNumber(day) {
+    const today = day || new Intl.DateTimeFormat("en-CA", {
+      timeZone: "America/New_York",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(new Date());
+    const start = Date.parse("2026-07-16T00:00:00Z");
+    const now = Date.parse(today + "T00:00:00Z");
+    if (!Number.isFinite(now)) return 125;
+    return Math.max(1, Math.floor((now - start) / 86400000) + 1);
+  }
+
+  function sanitizeSheet(list) {
+    if (!Array.isArray(list) || list.length < 7) return null;
+    const next = [];
+    for (const prompt of list.slice(0, 7)) {
+      if (!prompt || typeof prompt.text !== "string") return null;
+      const text = prompt.text.trim();
+      if (text.length < 8 || text.length > 160) return null;
+      if (!Array.isArray(prompt.answers)) return null;
+      const answers = [];
+      prompt.answers.slice(0, 24).forEach((entry) => {
+        if (!entry || !TIER_IDS.has(entry.tier) || !Array.isArray(entry.aliases)) return;
+        const aliases = entry.aliases
+          .filter((alias) => typeof alias === "string")
+          .map((alias) => alias.trim())
+          .filter((alias) => alias && alias.length < 80)
+          .slice(0, 12);
+        if (aliases.length) answers.push({ tier: entry.tier, aliases });
+      });
+      if (answers.length < 2) return null;
+      next.push({
+        text,
+        gem: typeof prompt.gem === "string" ? prompt.gem.slice(0, 180) : "One in a yalieon.",
+        answers,
+      });
+    }
+    return next.length === 7 ? next : null;
+  }
+
+  function applyDaily(data) {
+    const label = document.querySelector(".descent-no");
+    if (label) label.textContent = "DESCENT #" + (data && data.descent ? data.descent : descentNumber());
+  }
+
+  const dailyReady = (function loadDaily() {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 4000);
+    return fetch("/api/daily", { signal: ctrl.signal })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => applyDaily(data))
+      .catch(() => applyDaily(null))
+      .finally(() => clearTimeout(timer));
+  })();
+
   function showHome() {
     stopLoop();
     state.screen = "home";
@@ -650,7 +752,8 @@
     layout();
   }
 
-  function startDescent() {
+  async function startDescent() {
+    await dailyReady;
     ensureAudio();
     blip(340, 0.08, "square", 0.03);
     stopLoop();
@@ -674,7 +777,7 @@
     state.lastTyped = "";
     state.screen = "preview";
     state.phaseUntil = performance.now() + PREVIEW_MS;
-    const prompt = PROMPTS[state.index];
+    const prompt = sheet[state.index];
     $("prompt-text").textContent = prompt.text;
     $("prompt-card").hidden = false;
     $("result-card").hidden = true;
@@ -756,7 +859,7 @@
       reject();
       return;
     }
-    const hit = matchAnswer(PROMPTS[state.index], text);
+    const hit = matchAnswer(sheet[state.index], text);
     if (!hit) {
       reject();
       return;
@@ -776,7 +879,7 @@
   function timeout() {
     if (state.locked || state.screen !== "play") return;
     const pending = $("answer-input").value.trim();
-    const hit = pending ? matchAnswer(PROMPTS[state.index], pending) : null;
+    const hit = pending ? matchAnswer(sheet[state.index], pending) : null;
     if (hit) accept(hit.tier, pending);
     else accept("harvard", pending || "nothing");
   }
@@ -798,7 +901,7 @@
     $("result-answer").textContent = "“" + typed + "”";
     $("result-points").style.color = tier.color;
     $("result-points").textContent = tier.points === 0 ? "+0 PTS · nowhere" : "+" + tier.points + " PTS · drop " + tier.points + " ft";
-    const prompt = PROMPTS[state.index];
+    const prompt = sheet[state.index];
     $("result-line").textContent = tierId === "yalieon" ? prompt.gem : tier.line;
     const mark = $("result-mark");
     mark.innerHTML = "";
@@ -865,11 +968,12 @@
   }
 
   function bearing(score) {
-    if (score >= 450) return { range: "450+", line: "One in a yalieon. The crypt. Almost nobody walks out this far." };
+    if (score >= 450) return { range: "450+", line: "Yalieon. The crypt. Almost nobody walks out this far." };
     if (score >= 351) return { range: "351–449", line: "Deep cut. The shaft knows your name." };
-    if (score >= 251) return { range: "251–350", line: "Old Blue. Well below the bells." };
+    if (score >= 251) return { range: "251–350", line: "Rare. Well below the bells." };
     if (score >= 151) return { range: "151–250", line: "College. A respectable stair, and a crowded one." };
-    return { range: "0–150", line: "Prefrosh. Plenty of tower left." };
+    if (score >= 70) return { range: "70–150", line: "Prefrosh. Plenty of tower left." };
+    return { range: "0–69", line: "Harvard. The worst of the tower." };
   }
 
   function showEnd() {
@@ -1077,7 +1181,7 @@
       timeout,
       next,
       matchAnswer,
-      PROMPTS,
+      get prompts() { return sheet; },
       TIERS,
     };
   }
