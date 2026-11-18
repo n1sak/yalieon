@@ -1,9 +1,6 @@
 # Yalieon 🐶
 
-<img width="1105" height="533" alt="Screenshot 2026-11-17 at 8 03 20 PM" src="https://github.com/user-attachments/assets/3995e1e8-4a77-4473-ae16-5f967f69f4d3" />
-
-
-**A daily Yale game where basic answers get you nowhere.**
+**KRILLION FOR YALIES!**
 
 [![Watch Yalieon in action](https://img.youtube.com/vi/PnOtj-ZO2Ds/maxresdefault.jpg)](https://youtu.be/PnOtj-ZO2Ds)
 
